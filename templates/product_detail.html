@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{product.title}}</h2>
+
+<hr>
+
+<p>
+
+판매자 :
+
+{{product.nickname}}
+
+</p>
+<br><br>
+
+<a href="/report/product/{{ product.id }}">
+    상품 신고
+</a>
+{% if session.get("user_id") 
+and session["user_id"] != product.seller_id %}
+
+<br>
+
+<a href="/chat/start/{{ product.id }}">
+
+    판매자와 채팅하기
+
+</a>
+
+
+{% endif %}
+<p>
+
+가격 :
+
+{{product.price}} 원
+
+</p>
+
+<p>
+
+{{product.description}}
+
+</p>
+
+{% if session.get("user_id")==product.seller_id %}
+
+<a href="/product/edit/{{product.id}}">
+
+수정
+
+</a>
+
+<form method="POST"
+action="/product/delete/{{ product.id }}">
+
+    <input type="hidden"
+    name="csrf_token"
+    value="{{ csrf_token() }}">
+
+    <button type="submit">
+        삭제
+    </button>
+
+</form>
+
+
+
+
+{% endif %}
+
+{% endblock %}

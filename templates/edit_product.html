@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+
+상품 수정
+
+</h2>
+
+<form method="POST">
+
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<input
+name="title"
+value="{{product.title}}">
+
+<br><br>
+
+<input
+name="price"
+value="{{product.price}}">
+
+<br><br>
+
+<textarea
+name="description"
+rows="8"
+cols="50">{{product.description}}</textarea>
+
+<br><br>
+
+<button>
+
+수정
+
+</button>
+
+</form>
+
+{% endblock %}

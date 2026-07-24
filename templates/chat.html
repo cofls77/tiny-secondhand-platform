@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>판매자와 채팅</h2>
+
+<hr>
+
+{% for m in messages %}
+
+<p>
+
+<b>{{ m.nickname }}</b>
+
+:
+
+{{ m.message }}
+
+<br>
+
+<small>{{ m.created_at }}</small>
+
+</p>
+
+<hr>
+
+{% endfor %}
+
+<form method="POST">
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <input
+    name="message"
+    placeholder="메시지를 입력하세요"
+    required>
+
+    <button>보내기</button>
+
+</form>
+
+{% endblock %}

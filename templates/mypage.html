@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>마이페이지</h2>
+
+<hr>
+
+<p>
+닉네임 :
+<b>{{ user.nickname }}</b>
+</p>
+
+<p>
+아이디 :
+{{ user.username }}
+</p>
+
+<p>
+보유 포인트 :
+<b>{{ user.point }} 원</b>
+</p>
+
+<p>
+<a href="/transfer">포인트 송금</a>
+</p>
+<hr>
+
+<h3>내가 등록한 상품</h3>
+
+{% if products %}
+
+<ul>
+
+{% for p in products %}
+
+<li>
+
+<a href="/product/{{ p.id }}">
+{{ p.title }}
+</a>
+
+-
+{{ p.price }}원
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+등록한 상품이 없습니다.
+
+{% endif %}
+
+{% endblock %}

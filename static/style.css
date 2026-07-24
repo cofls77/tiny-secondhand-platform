@@ -1,0 +1,34 @@
+body{
+
+    width:900px;
+
+    margin:auto;
+
+    font-family:Arial;
+
+}
+
+input{
+
+    width:250px;
+
+    padding:8px;
+
+}
+
+button{
+
+    padding:8px 15px;
+
+}
+textarea{
+
+    width:400px;
+
+}
+
+h3{
+
+    margin:0;
+
+}

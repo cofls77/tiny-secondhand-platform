@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>포인트 송금</h2>
+
+<p>내 포인트 : <b>{{ mypoint }} P</b></p>
+
+<form method="POST">
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    받는 사람 아이디<br>
+
+    <input name="username">
+
+    <br><br>
+
+    송금 포인트<br>
+
+    <input type="number" name="amount">
+
+    <br><br>
+
+    <button>송금</button>
+
+</form>
+
+{% endblock %}

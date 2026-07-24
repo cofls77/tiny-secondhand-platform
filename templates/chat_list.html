@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>채팅 목록</h2>
+
+<hr>
+
+{% if rooms %}
+
+{% for r in rooms %}
+
+<div style="border:1px solid gray; padding:15px; margin-bottom:10px;">
+
+    <h3>
+        <a href="/chat/{{ r.id }}">
+            {{ r.title }}
+        </a>
+    </h3>
+
+
+    {% if session["user_id"] == r.buyer_id %}
+
+        판매자 : {{ r.seller_name }}
+
+    {% else %}
+
+        구매자 : {{ r.buyer_name }}
+
+    {% endif %}
+
+
+</div>
+
+{% endfor %}
+
+
+{% else %}
+
+참여 중인 채팅이 없습니다.
+
+{% endif %}
+
+
+{% endblock %}

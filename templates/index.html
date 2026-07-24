@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+안녕하세요
+<b>{{ session.get("nickname") }}</b>
+
+<hr>
+
+<form action="/search" method="GET">
+
+    <input
+    type="text"
+    name="keyword"
+    placeholder="상품 검색">
+
+    <button>검색</button>
+
+</form>
+
+<h2>상품 목록</h2>
+
+{% if products %}
+
+    {% for p in products %}
+
+    <div style="border:1px solid gray;padding:15px;margin-bottom:15px;">
+
+        <h3>
+            <a href="/product/{{ p.id }}">
+                {{ p.title }}
+            </a>
+        </h3>
+
+        판매자 : {{ p.nickname }}
+
+        <br><br>
+
+        가격 : {{ p.price }} 원
+
+        <br><br>
+
+        {{ p.description[:100] }}
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+등록된 상품이 없습니다.
+
+{% endif %}
+
+{% endblock %}

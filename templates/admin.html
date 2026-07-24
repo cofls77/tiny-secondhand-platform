@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h2>관리자 페이지</h2>
+
+
+<hr>
+
+
+<h3>사용자 목록</h3>
+
+
+{% for u in users %}
+
+<p>
+
+{{u.id}}
+
+/
+
+{{u.username}}
+
+/
+
+{{u.nickname}}
+
+/
+
+권한:
+{{u.role}}
+
+{% if u.is_dormant %}
+(차단됨)
+{% endif %}
+
+
+{% if u.is_dormant %}
+
+<form method="POST"
+action="/admin/unblock/{{u.id}}">
+
+    <input type="hidden"
+    name="csrf_token"
+    value="{{ csrf_token() }}">
+
+    <button type="submit">
+        차단 해제
+    </button>
+
+</form>
+
+
+{% else %}
+
+
+<form method="POST"
+action="/admin/block/{{u.id}}">
+
+<input type="hidden"
+name="csrf_token"
+value="{{ csrf_token() }}">
+
+
+<button type="submit">
+차단
+</button>
+
+
+</form>
+
+
+{% endif %}
+
+
+</p>
+
+
+{% endfor %}
+
+
+
+<hr>
+
+
+<h3>상품 목록</h3>
+
+
+{% for p in products %}
+
+
+<p>
+
+{{p.title}}
+
+-
+
+{{p.nickname}}
+
+
+<a href="/admin/delete/product/{{p.id}}">
+삭제
+</a>
+
+
+</p>
+
+
+{% endfor %}
+
+
+
+
+<hr>
+
+
+<h3>신고 목록</h3>
+
+
+{% for r in reports %}
+
+
+<p>
+
+신고자:
+{{r.reporter_name}}
+
+
+<br>
+
+
+대상:
+{{r.target_name}}
+
+
+<br>
+
+
+상품:
+{{r.title}}
+
+
+<br>
+
+
+사유:
+{{r.reason}}
+
+
+</p>
+
+
+<hr>
+
+
+{% endfor %}
+
+
+
+{% endblock %}

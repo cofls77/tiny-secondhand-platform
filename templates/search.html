@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+
+'{{keyword}}'
+
+검색 결과
+
+</h2>
+
+<hr>
+
+{% for p in products %}
+
+<div>
+
+<a href="/product/{{p.id}}">
+
+{{p.title}}
+
+</a>
+
+|
+
+{{p.price}} 원
+
+|
+
+{{p.nickname}}
+
+</div>
+
+{% else %}
+
+검색 결과가 없습니다.
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Tiny Market</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',filename='style.css') }}">
+
+</head>
+
+<body>
+
+<h1>Tiny Second-hand Shopping Platform</h1>
+
+<hr>
+
+{% with messages=get_flashed_messages() %}
+
+{% if messages %}
+
+{% for m in messages %}
+
+<p>{{m}}</p>
+
+{% endfor %}
+
+{% endif %}
+
+{% endwith %}
+
+<nav>
+    <a href="/">🏠 홈</a>
+
+    {% if session.get("user_id") %}
+        | {{ session["nickname"] }}님
+        | <a href="/mypage">마이페이지</a>
+        | <a href="/chat/list">채팅</a>
+        | <a href="/product/add">상품등록</a>
+        | <a href="/logout">로그아웃</a>
+    {% else %}
+        | <a href="/login">로그인</a>
+        | <a href="/register">회원가입</a>
+    {% endif %}
+</nav>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+
+</html>
